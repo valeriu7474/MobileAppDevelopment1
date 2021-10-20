@@ -6,7 +6,8 @@ import org.wit.exercise.console.models.exerciseModel
 import org.wit.exercise.console.views.AddexerciseScreen
 import org.wit.exercise.console.views.ListexerciseScreen
 import org.wit.exercise.console.views.MenuScreen
-import tornadofx.*
+import tornadofx.Controller
+import tornadofx.runLater
 
 class exerciseUIController : Controller() {
 

@@ -31,11 +31,11 @@ class AddexerciseScreen : View("Add exercise") {
                 action {
                     runAsyncWithProgress {
                         exerciseUIController.add(weight.toString(),caloriesConsumed.toString(),caloriesLost.toString())
-
                     }
+
                 }
             }
-            button("Close") {
+            button("Back to home screen") {
                 useMaxWidth = true
                 action {
                     runAsyncWithProgress {

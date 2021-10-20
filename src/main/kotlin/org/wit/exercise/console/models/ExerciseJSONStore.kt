@@ -7,8 +7,6 @@ import mu.KotlinLogging
 import org.wit.exercise.console.helpers.exists
 import org.wit.exercise.console.helpers.read
 import org.wit.exercise.console.helpers.write
-
-import org.wit.exercise.console.helpers.*
 import java.util.*
 
 private val logger = KotlinLogging.logger {}

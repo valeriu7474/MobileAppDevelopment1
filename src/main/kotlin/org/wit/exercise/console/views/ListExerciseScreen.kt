@@ -1,10 +1,6 @@
 package org.wit.exercise.console.views
 
 
-import javafx.beans.property.SimpleObjectProperty
-import javafx.collections.FXCollections
-import javafx.scene.control.TableView
-import javafx.scene.layout.GridPane
 import org.wit.exercise.console.controllers.exerciseUIController
 import org.wit.exercise.console.models.exerciseModel
 import tornadofx.*

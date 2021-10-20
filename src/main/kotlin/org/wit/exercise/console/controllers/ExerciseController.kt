@@ -2,7 +2,6 @@ package org.wit.exercise.console.controllers
 
 import mu.KotlinLogging
 import org.wit.exercise.console.models.ExerciseJSONStore
-import org.wit.exercise.console.models.exerciseMemStore
 import org.wit.exercise.console.models.exerciseModel
 import org.wit.exercise.console.views.exerciseView
 

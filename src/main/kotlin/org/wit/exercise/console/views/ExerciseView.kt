@@ -1,7 +1,6 @@
 package org.wit.exercise.console.views
 
 import org.wit.exercise.console.models.ExerciseJSONStore
-import org.wit.exercise.console.models.exerciseMemStore
 import org.wit.exercise.console.models.exerciseModel
 
 class exerciseView {
