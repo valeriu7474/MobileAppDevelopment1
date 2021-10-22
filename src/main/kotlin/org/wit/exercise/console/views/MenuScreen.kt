@@ -25,15 +25,7 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
 
 
     override val root = form {
-
-
-
-
-
         setPrefSize(600.0, 300.0)
-
-
-
         fieldset(labelPosition = Orientation.VERTICAL) {
             text("Exercise App - Track and manage your weight loss")
             {
@@ -59,12 +51,8 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                 endY = 50.0
             }
 
-
-
             text("")
             text("Add your daily entry")
-
-
 
             hbox {
                 button("Add Entry") {
@@ -75,9 +63,8 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
 
                     style {
                         fontWeight = FontWeight.BOLD
-
-
                     }
+
                     isDefaultButton = true
                     useMaxWidth = false
                     action {
@@ -85,17 +72,12 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                             exerciseUIController.loadAddScreen()
                         }
                     }
-
                 }
 
-
-
                 button("List All Entries") {
-
                     hboxConstraints {
                         margin = Insets(15.0)
                     }
-
 
                     isDefaultButton = true
                     useMaxWidth = false
@@ -106,9 +88,6 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                     }
                 }
             }
-
-
-
 
             text("")
 
@@ -123,7 +102,6 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
 
             text("Start a new week")
 
-
             hbox {
                 hbox {
                     button("New Week") {
@@ -137,7 +115,6 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                         action {
                             runAsyncWithProgress {
                                 exerciseUIController.markNewWeek()
-
                             }
                         }
                     }
@@ -145,7 +122,6 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
 
                 hbox {
                     button("Erase the week") {
-
                         hboxConstraints {
                             margin = Insets(15.0)
                         }
@@ -155,12 +131,10 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                         action {
                             runAsyncWithProgress {
                                 exerciseUIController.delete()
-
                             }
                         }
                     }
                 }
-
             }
 
             text("")
@@ -178,7 +152,6 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
             text("Right Click on selected option to delete")
             hbox {
 
-
                 val aentries = exerciseUIController.exercises.findAll()
                 combobox(values = aentries) {
                     hboxConstraints {
@@ -193,6 +166,7 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                     }
                 }
             }
+
             hbox{
         }
             text("")
@@ -204,15 +178,8 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                 endY = 50.0
             }
 
-
-
-
-
-
             text("")
             text("Update an entry")
-
-
 
             text("")
 
@@ -223,17 +190,12 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                         margin = Insets(15.0)
                     }
 
-
                     isDefaultButton = true
                     useMaxWidth = false
                     action {
-
                         exerciseUIController.delete()
-
                     }
                 }
-
-
 
 //            runAsyncWithProgress {
 //                tableview(data) {
@@ -246,7 +208,6 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
 //                }
 //            }
 
-
             }
             text("")
 
@@ -256,7 +217,6 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                 endX = 700.0
                 endY = 50.0
             }
-
 
             text("")
 

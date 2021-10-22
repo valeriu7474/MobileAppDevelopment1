@@ -39,6 +39,7 @@ class AddexerciseScreen : View("Add exercise") {
 
                 }
             }
+
             button("Back to home screen") {
                 useMaxWidth = true
                 action {

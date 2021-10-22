@@ -26,13 +26,11 @@ class ExerciseJSONStore : exerciseStore {
 
     init {
         if (exists(JSON_FILE)) {
-
             deserialize()
         }
     }
 
     override fun findAll(): MutableList<exerciseModel> {
-
         return exercises
     }
 
@@ -41,17 +39,10 @@ class ExerciseJSONStore : exerciseStore {
         return foundexercise
     }
 
-
-
     override fun create(exercise: exerciseModel) {
         exercise.id = generateRandomId()
-
-
-
-
         exercises.add(exercise)
         serialize()
-
     }
 
     override fun update(exercise: exerciseModel) {
@@ -83,13 +74,10 @@ class ExerciseJSONStore : exerciseStore {
     private fun deserialize() {
         val jsonString = read(JSON_FILE)
         exercises = Gson().fromJson(jsonString, listType)
-
-
     }
 
     fun dee() {
         exercises.clear()
-
         serialize()
     }
 

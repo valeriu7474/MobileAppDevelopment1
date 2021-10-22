@@ -7,7 +7,6 @@ import org.wit.exercise.console.views.exerciseView
 
 class exerciseController {
 
-    // val exercises = exerciseMemStore()
      val exercises = ExerciseJSONStore()
     val exerciseView = exerciseView()
     val logger = KotlinLogging.logger {}
@@ -33,7 +32,7 @@ class exerciseController {
             }
             println()
         } while (input != -1)
-        logger.info { "Shutting Down exercise Console App" }
+        logger.info { "Shutting Down Exercise App - Console" }
     }
 
     fun menu() :Int { return exerciseView.menu() }
@@ -52,7 +51,6 @@ class exerciseController {
     }
 
     fun update() {
-
         exerciseView.listexercises(exercises)
         var searchId = exerciseView.getId()
         val aexercise = search(searchId)
@@ -61,13 +59,13 @@ class exerciseController {
             if(exerciseView.updateexerciseData(aexercise)) {
                 exercises.update(aexercise)
                 exerciseView.showexercise(aexercise)
-                logger.info("exercise Updated : [ $aexercise ]")
+                logger.info("Entry Updated : [ $aexercise ]")
             }
             else
-                logger.info("exercise Not Updated")
+                logger.info("Entry Not Updated")
         }
         else
-            println("exercise Not Updated...")
+            println("Entry Not Updated...")
     }
 
     fun delete() {
@@ -77,11 +75,11 @@ class exerciseController {
 
         if(aexercise != null) {
             exercises.delete(aexercise)
-            println("exercise Deleted...")
+            println("Entry Deleted...")
             exerciseView.listexercises(exercises)
         }
         else
-            println("exercise Not Deleted...")
+            println("Entry Not Deleted...")
     }
 
     fun search() {

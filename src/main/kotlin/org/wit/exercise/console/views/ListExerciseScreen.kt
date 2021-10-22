@@ -17,11 +17,8 @@ class ListexerciseScreen : View("List All Entries") {
     val tableContent = exerciseUIController.exercises.findAll()
     val data = tableContent.observable()
 
-
     override val root = vbox {
         setPrefSize(1500.0, 800.0)
-
-
 
         text("")
 
@@ -36,35 +33,24 @@ class ListexerciseScreen : View("List All Entries") {
                     readonlyColumn("Calories Consumed", exerciseModel::caloriesConsumed)
                     readonlyColumn("Calories Lost", exerciseModel::caloriesLost)
 
-                    contextMenu = ContextMenu().apply{
-                        menuitem("Delete"){
-                            selectedItem?.let{ data.remove(it) }
-
+                    contextMenu = ContextMenu().apply {
+                        menuitem("Delete") {
+                            selectedItem?.let { data.remove(it) }
                         }
-                        }
-
-
+                    }
                 }
-
             }
+
             tab("Last Week", HBox()) {
-
                 tableview(data){
-
                     readonlyColumn("ID", exerciseModel::id)
                     readonlyColumn("Week Number", exerciseModel::weekNo)
                     readonlyColumn("Weight", exerciseModel::weight)
                     readonlyColumn("Calories Consumed", exerciseModel::caloriesConsumed)
                     readonlyColumn("Calories Lost", exerciseModel::caloriesLost)
-
-
-
                 }
             }
         }
-
-
-
 //
 //        tableview(data) {
 //            readonlyColumn("ID", exerciseModel::id)
@@ -72,30 +58,18 @@ class ListexerciseScreen : View("List All Entries") {
 //            readonlyColumn("Weight", exerciseModel::weight)
 //            readonlyColumn("Calories Consumed", exerciseModel::caloriesConsumed)
 //            readonlyColumn("Calories Lost", exerciseModel::caloriesLost)
-//
-//
-//
-//
-//
+
 //        }
 
-
         text("")
-
-
 
         button("Close") {
             useMaxWidth = false
             action {
                 runAsyncWithProgress {
                     exerciseUIController.closeList()
-
                 }
             }
         }
-
-
-
     }
-
 }
