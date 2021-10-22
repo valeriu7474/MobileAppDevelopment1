@@ -2,7 +2,6 @@ package org.wit.exercise.console.models
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import mu.KotlinLogging
 import org.wit.exercise.console.helpers.exists
@@ -42,10 +41,17 @@ class ExerciseJSONStore : exerciseStore {
         return foundexercise
     }
 
+
+
     override fun create(exercise: exerciseModel) {
         exercise.id = generateRandomId()
+
+
+
+
         exercises.add(exercise)
         serialize()
+
     }
 
     override fun update(exercise: exerciseModel) {
@@ -83,6 +89,8 @@ class ExerciseJSONStore : exerciseStore {
 
     fun dee() {
         exercises.clear()
+
+        serialize()
     }
 
 //    fun lee(id) {

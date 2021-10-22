@@ -18,7 +18,6 @@ class AddexerciseScreen : View("Add exercise") {
         fieldset(labelPosition = Orientation.VERTICAL) {
             field("Enter your week no") {
                 textfield(weekNo).required()
-
             }
             field("Enter your weight") {
                 textfield(weight).required()

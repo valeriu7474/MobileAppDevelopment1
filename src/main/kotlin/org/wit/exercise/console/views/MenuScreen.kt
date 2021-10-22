@@ -3,8 +3,10 @@ package org.wit.exercise.console.views
 import javafx.application.Platform
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
+import javafx.geometry.Insets
 import javafx.geometry.Orientation
 import javafx.geometry.Pos
+import javafx.scene.control.ContextMenu
 import javafx.scene.paint.Color
 import javafx.scene.text.Font
 import javafx.scene.text.FontWeight
@@ -12,6 +14,7 @@ import javafx.scene.text.TextAlignment
 import org.wit.exercise.console.controllers.exerciseUIController
 import org.wit.exercise.console.models.exerciseModel
 import tornadofx.*
+import tornadofx.Stylesheet.Companion.selected
 
 
 class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
@@ -60,10 +63,21 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
 
             text("")
             text("Add your daily entry")
-            text("")
 
+
+
+            hbox {
                 button("Add Entry") {
 
+                    hboxConstraints {
+                        margin = Insets(15.0)
+                    }
+
+                    style {
+                        fontWeight = FontWeight.BOLD
+
+
+                    }
                     isDefaultButton = true
                     useMaxWidth = false
                     action {
@@ -71,10 +85,17 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                             exerciseUIController.loadAddScreen()
                         }
                     }
+
                 }
-                text("")
+
+
 
                 button("List All Entries") {
+
+                    hboxConstraints {
+                        margin = Insets(15.0)
+                    }
+
 
                     isDefaultButton = true
                     useMaxWidth = false
@@ -84,22 +105,9 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                         }
                     }
                 }
-
-            text("")
-
-            text("Start a new week")
-            text("")
-            button("New Week") {
-
-                isDefaultButton = true
-                useMaxWidth = false
-                action {
-                    runAsyncWithProgress {
-                        exerciseUIController.markNewWeek()
-
-                    }
-                }
             }
+
+
 
 
             text("")
@@ -110,29 +118,83 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
                 endX = 700.0
                 endY = 50.0
             }
-            text("")
-
-            text("Delete An Entry")
-            text("")
-            val aentries = FXCollections.observableArrayList("Austin",
-                "Dallas","Midland","San Antonio","Fort Worth")
-
-            combobox(values = aentries)
-
 
             text("")
 
-            button("Delete") {
+            text("Start a new week")
 
-                isDefaultButton = true
-                useMaxWidth = false
-                action {
 
-                    exerciseUIController.delete()
+            hbox {
+                hbox {
+                    button("New Week") {
 
+                        hboxConstraints {
+                            margin = Insets(15.0)
+                        }
+
+                        isDefaultButton = true
+                        useMaxWidth = false
+                        action {
+                            runAsyncWithProgress {
+                                exerciseUIController.markNewWeek()
+
+                            }
+                        }
+                    }
                 }
+
+                hbox {
+                    button("Erase the week") {
+
+                        hboxConstraints {
+                            margin = Insets(15.0)
+                        }
+
+                        isDefaultButton = true
+                        useMaxWidth = false
+                        action {
+                            runAsyncWithProgress {
+                                exerciseUIController.delete()
+
+                            }
+                        }
+                    }
+                }
+
             }
 
+            text("")
+
+            line {
+                startX = 0.0
+                startY = 50.0
+                endX = 700.0
+                endY = 50.0
+            }
+
+            text("")
+            text("Delete An Entry")
+            text("")
+            text("Right Click on selected option to delete")
+            hbox {
+
+
+                val aentries = exerciseUIController.exercises.findAll()
+                combobox(values = aentries) {
+                    hboxConstraints {
+                        margin = Insets(15.0)
+                    }
+
+                    contextMenu = ContextMenu().apply{
+                        menuitem("Delete"){
+                            selectedItem?.let{ data.remove(it) }
+
+                        }
+                    }
+                }
+            }
+            hbox{
+        }
             text("")
 
             line {
@@ -154,16 +216,24 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
 
             text("")
 
-            button("Update") {
+            hbox {
+                button("Update") {
 
-                isDefaultButton = true
-                useMaxWidth = false
-                action {
+                    hboxConstraints {
+                        margin = Insets(15.0)
+                    }
 
-                    exerciseUIController.delete()
 
+                    isDefaultButton = true
+                    useMaxWidth = false
+                    action {
+
+                        exerciseUIController.delete()
+
+                    }
                 }
-            }
+
+
 
 //            runAsyncWithProgress {
 //                tableview(data) {
@@ -177,34 +247,35 @@ class MenuScreen : View("Exercise App - Created by Valeriu Blascu") {
 //            }
 
 
+            }
+            text("")
 
-
-
-
-
+            line {
+                startX = 0.0
+                startY = 50.0
+                endX = 700.0
+                endY = 50.0
+            }
 
 
             text("")
-            button("Exit") {
 
-                isDefaultButton = true
-                useMaxWidth = false
-                action {
-                    runAsyncWithProgress {
-                        Platform.exit();
-                        System.exit(0);
+            hbox {
+                button("Exit") {
+                    hboxConstraints {
+                        margin = Insets(15.0)
+                    }
+                    isDefaultButton = true
+                    useMaxWidth = false
+                    action {
+                        runAsyncWithProgress {
+                            Platform.exit();
+                            System.exit(0);
+                        }
                     }
                 }
             }
         }
 
     }
-
-
-
-
-
-
-
-
 }

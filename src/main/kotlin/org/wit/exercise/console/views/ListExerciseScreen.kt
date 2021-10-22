@@ -1,6 +1,7 @@
 package org.wit.exercise.console.views
 
 
+import javafx.collections.FXCollections
 import javafx.scene.control.ContextMenu
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
@@ -25,7 +26,8 @@ class ListexerciseScreen : View("List All Entries") {
         text("")
 
         tabpane {
-            tab("Screen 1", VBox()) {
+            tab("This Week", VBox()) {
+
                 tableview(data){
 
                     readonlyColumn("ID", exerciseModel::id)
@@ -33,9 +35,20 @@ class ListexerciseScreen : View("List All Entries") {
                     readonlyColumn("Weight", exerciseModel::weight)
                     readonlyColumn("Calories Consumed", exerciseModel::caloriesConsumed)
                     readonlyColumn("Calories Lost", exerciseModel::caloriesLost)
+
+                    contextMenu = ContextMenu().apply{
+                        menuitem("Delete"){
+                            selectedItem?.let{ data.remove(it) }
+
+                        }
+                        }
+
+
                 }
+
             }
-            tab("Screen 2", HBox()) {
+            tab("Last Week", HBox()) {
+
                 tableview(data){
 
                     readonlyColumn("ID", exerciseModel::id)
@@ -43,6 +56,9 @@ class ListexerciseScreen : View("List All Entries") {
                     readonlyColumn("Weight", exerciseModel::weight)
                     readonlyColumn("Calories Consumed", exerciseModel::caloriesConsumed)
                     readonlyColumn("Calories Lost", exerciseModel::caloriesLost)
+
+
+
                 }
             }
         }
@@ -68,12 +84,12 @@ class ListexerciseScreen : View("List All Entries") {
 
 
 
-
         button("Close") {
             useMaxWidth = false
             action {
                 runAsyncWithProgress {
                     exerciseUIController.closeList()
+
                 }
             }
         }

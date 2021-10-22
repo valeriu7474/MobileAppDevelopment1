@@ -9,6 +9,7 @@ import org.wit.exercise.console.views.MenuScreen
 import tornadofx.Controller
 import tornadofx.runLater
 import java.nio.file.Files
+import java.sql.RowId
 
 class exerciseUIController : Controller() {
 
@@ -27,7 +28,6 @@ class exerciseUIController : Controller() {
 
     fun loadListScreen() {
         runLater {
-
             find(MenuScreen::class).replaceWith(ListexerciseScreen::class, sizeToScene = true, centerOnScreen = true)
         }
         exercises.logAll()
@@ -57,11 +57,16 @@ class exerciseUIController : Controller() {
         logger.info("New Week Added")
     }
 
+
+
     fun delete(){
 //        val keys: Iterator<*> = exercises.keys()
 //        while (keys.hasNext()) exercises.remove(exercises.keys().next() as String)
 
         exercises.dee()
+        var aexercise = exerciseModel(weekNo = "NEW WEEK", weight = "NEW WEEK", caloriesConsumed = "NEW WEEK", caloriesLost = "NEW WEEK")
+        exercises.create(aexercise)
+
 
     }
 
