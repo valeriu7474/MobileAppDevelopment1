@@ -6,4 +6,5 @@ interface exerciseStore {
     fun create(exercise: exerciseModel)
     fun update(exercise: exerciseModel)
     fun delete(exercise: exerciseModel)
+
 }

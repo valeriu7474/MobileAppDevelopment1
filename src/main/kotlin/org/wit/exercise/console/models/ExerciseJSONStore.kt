@@ -2,6 +2,7 @@ package org.wit.exercise.console.models
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import mu.KotlinLogging
 import org.wit.exercise.console.helpers.exists
@@ -11,8 +12,8 @@ import java.util.*
 
 private val logger = KotlinLogging.logger {}
 
-val JSON_FILE = "exercises.json"
-val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
+val JSON_FILE = "week.json"
+val gsonBuilder: Gson = GsonBuilder().setPrettyPrinting().create()
 val listType = object : TypeToken<java.util.ArrayList<exerciseModel>>() {}.type
 
 fun generateRandomId(): Long {
@@ -22,14 +23,17 @@ fun generateRandomId(): Long {
 class ExerciseJSONStore : exerciseStore {
 
     var exercises = mutableListOf<exerciseModel>()
+//var exercises: MutableList<exerciseModel> = mutableListOf()
 
     init {
         if (exists(JSON_FILE)) {
+
             deserialize()
         }
     }
 
     override fun findAll(): MutableList<exerciseModel> {
+
         return exercises
     }
 
@@ -47,6 +51,7 @@ class ExerciseJSONStore : exerciseStore {
     override fun update(exercise: exerciseModel) {
         var foundexercise = findOne(exercise.id!!)
         if (foundexercise != null) {
+            foundexercise.weekNo = exercise.weekNo
             foundexercise.weight = exercise.weight
             foundexercise.caloriesConsumed = exercise.caloriesConsumed
             foundexercise.caloriesLost = exercise.caloriesLost
@@ -65,11 +70,23 @@ class ExerciseJSONStore : exerciseStore {
 
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(exercises, listType)
+
         write(JSON_FILE, jsonString)
     }
 
     private fun deserialize() {
         val jsonString = read(JSON_FILE)
         exercises = Gson().fromJson(jsonString, listType)
+
+
     }
+
+    fun dee() {
+        exercises.clear()
+    }
+
+//    fun lee(id) {
+//        exercises.remove(this)
+//    }
+
 }

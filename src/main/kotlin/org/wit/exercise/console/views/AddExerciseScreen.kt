@@ -7,6 +7,7 @@ import tornadofx.*
 
 class AddexerciseScreen : View("Add exercise") {
     val model = ViewModel()
+    val weekNo = model.bind { SimpleStringProperty() }
     val weight = model.bind { SimpleStringProperty() }
     val caloriesConsumed = model.bind { SimpleStringProperty() }
     val caloriesLost = model.bind { SimpleStringProperty() }
@@ -15,14 +16,18 @@ class AddexerciseScreen : View("Add exercise") {
     override val root = form {
         setPrefSize(600.0, 200.0)
         fieldset(labelPosition = Orientation.VERTICAL) {
+            field("Enter your week no") {
+                textfield(weekNo).required()
+
+            }
             field("Enter your weight") {
                 textfield(weight).required()
             }
             field("Enter calories consumed") {
-                textarea(caloriesConsumed).required()
+                textfield(caloriesConsumed).required()
             }
             field("Enter calories lost") {
-                textarea(caloriesLost).required()
+                textfield(caloriesLost).required()
             }
             button("Add") {
                 enableWhen(model.valid)
@@ -30,7 +35,7 @@ class AddexerciseScreen : View("Add exercise") {
                 useMaxWidth = true
                 action {
                     runAsyncWithProgress {
-                        exerciseUIController.add(weight.toString(),caloriesConsumed.toString(),caloriesLost.toString())
+                        exerciseUIController.add(weekNo.toString(),weight.toString(),caloriesConsumed.toString(),caloriesLost.toString())
                     }
 
                 }

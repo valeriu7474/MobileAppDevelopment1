@@ -2,6 +2,7 @@ package org.wit.exercise.console.views
 
 import org.wit.exercise.console.models.ExerciseJSONStore
 import org.wit.exercise.console.models.exerciseModel
+import java.util.*
 
 class exerciseView {
 
@@ -44,6 +45,8 @@ class exerciseView {
     fun addexerciseData(exercise : exerciseModel) : Boolean {
 
         println()
+        print("Enter your week no : ")
+        exercise.weekNo = readLine()!!
         print("Enter your weight : ")
         exercise.weight = readLine()!!
         print("Enter calories consumed : ")
@@ -51,16 +54,19 @@ class exerciseView {
         print("Enter calories lost : ")
         exercise.caloriesLost = readLine()!!
 
-        return exercise.weight.isNotEmpty() && exercise.caloriesConsumed.isNotEmpty() && exercise.caloriesLost.isNotEmpty()
+        return exercise.weekNo.isNotEmpty() && exercise.weight.isNotEmpty() && exercise.caloriesConsumed.isNotEmpty() && exercise.caloriesLost.isNotEmpty()
     }
 
     fun updateexerciseData(exercise : exerciseModel) : Boolean {
 
+        var tempweekNo: String?
         var tempweight: String?
         var tempcaloriesConsumed: String?
         var tempcaloriesLost: String?
 
         if (exercise != null) {
+            print("Enter a the week for [ " + exercise.weekNo + " ] : ")
+            tempweekNo = readLine()!!
             print("Enter a new weight for [ " + exercise.weight + " ] : ")
             tempweight = readLine()!!
             print("Enter a new calories consumed amount [ " + exercise.caloriesConsumed + " ] : ")
@@ -68,7 +74,8 @@ class exerciseView {
             print("Enter a new calories lost amount [ " + exercise.caloriesLost + " ] : ")
             tempcaloriesLost = readLine()!!
 
-            if (!tempweight.isNullOrEmpty() && !tempcaloriesConsumed.isNullOrEmpty() && !tempcaloriesLost.isNullOrEmpty()) {
+            if (!tempweekNo.isNullOrEmpty() && !tempweight.isNullOrEmpty() && !tempcaloriesConsumed.isNullOrEmpty() && !tempcaloriesLost.isNullOrEmpty()) {
+                exercise.weekNo = tempweekNo
                 exercise.weight = tempweight
                 exercise.caloriesConsumed = tempcaloriesConsumed
                 exercise.caloriesLost = tempcaloriesLost
